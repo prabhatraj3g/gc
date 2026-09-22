@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal — presence watcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <div class="brand-text">
+      <h1>Signal</h1>
+      <p>presence watcher · getcompanion.in</p>
+    </div>
+  </div>
+
+  <div class="sweep-readout">
+    <div class="sweep" id="sweep">
+      <div class="sweep-arm" id="sweepArm"></div>
+      <div class="sweep-count" id="onlineCount">0</div>
+    </div>
+    <div class="sweep-label">online now</div>
+  </div>
+
+  <div class="clock-block">
+    <div class="clock-row">
+      <span class="clock-label">last scan</span>
+      <span class="clock-value" id="lastScan">—</span>
+    </div>
+    <div class="clock-actions">
+      <div class="status-pill" id="scanState">idle</div>
+      <button id="stopStartBtn" class="stop-btn" type="button" title="Stop watching">
+        <span class="stop-icon" aria-hidden="true">⏹</span> Stop
+      </button>
+      <button id="refreshBtn" class="refresh-btn" type="button" title="Scan now">
+        <span class="refresh-icon" aria-hidden="true">↻</span> Refresh
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="panel roster">
+    <div class="panel-head">
+      <h2>Watch list</h2>
+      <form id="addForm" class="add-form">
+        <input type="text" id="addInput" placeholder="Add a name to watch…" autocomplete="off" required>
+        <button type="submit">Add</button>
+      </form>
+    </div>
+
+    <div id="grid" class="grid">
+      <!-- person cards injected here -->
+    </div>
+
+    <p id="emptyState" class="empty-state" hidden>
+      Nobody on the list yet. Add a name above to start tracking it.
+    </p>
+  </section>
+
+  <aside class="panel console">
+    <div class="panel-head">
+      <h2>Activity</h2>
+      <span class="console-hint">newest first</span>
+    </div>
+    <ul id="log" class="log-list"></ul>
+  </aside>
+
+</main>
+
+<div id="toastHost" class="toast-host" aria-live="polite"></div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
